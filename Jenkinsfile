@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git(url: 'https://github.com/microweber/microweber.git')
+        git(url: 'https://github.com/peter-mw/jenkins-test.git')
       }
     }
 
