@@ -29,6 +29,7 @@ pipeline {
             sh 'curl -sSfL -o $WORKSPACE/vendor/bin/phpunit https://phar.phpunit.de/phpunit-5.7.phar'
             sh 'php -v'
             sh 'composer --version'
+            sh 'chmod -R 777 $WORKSPACE/storage'
             echo 'Running PHPUnit tests...'
             sh 'php $WORKSPACE/vendor/bin/phpunit --coverage-html $WORKSPACE/report/clover --coverage-clover $WORKSPACE/report/clover.xml --log-junit $WORKSPACE/report/junit.xml'
             sh 'chmod -R a+w $PWD && chmod -R a+w $WORKSPACE'
