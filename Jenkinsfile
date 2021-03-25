@@ -4,10 +4,9 @@ node {
     }
     stage("build") {
         writeFile file: "test.txt", text: "test"
-             docker.image("allebb/phptestrunner-74:latest").inside("-v /home/jenkins/foo.txt:/foo.txt") { c ->
-                sh 'cat /foo.txt' // we can mount any file from host
-                sh 'cat test.txt' // we can access files from workspace
-                sh 'echo "modified-inside-container" > test.txt' // we can modify files in workspace
+             docker.image("allebb/phptestrunner-74:latest").inside("-v /home/jenkins/:/home/jenkins/") { c ->
+                sh 'pwd'
+                sh 'ls -la'
                 sh 'printenv' // jenkins is passing all envs variables into container
 
         }
