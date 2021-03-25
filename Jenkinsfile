@@ -42,7 +42,7 @@ pipeline {
 
     stage('Release') {
       steps {
-        echo 'Ready to release etc.'
+        echo 'Ready.'
       }
     }
 
