@@ -1,9 +1,5 @@
 pipeline {
-  agent { docker {
-                           image 'allebb/phptestrunner-74:latest'
-                           args '-u root:sudo'
-                         }
-                     }
+  agent none
   stages {
     stage('Checkout') {
       steps {
@@ -16,7 +12,11 @@ pipeline {
 
 
         stage('PHP 7.4') {
-
+  agent { docker {
+                           image 'allebb/phptestrunner-74:latest'
+                           args '-u root:sudo'
+                         }
+                     }
           steps {
             sh 'pwd'
             sh 'ls -la'
