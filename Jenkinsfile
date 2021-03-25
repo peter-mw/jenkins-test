@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git(url: 'https://github.com/microweber/microweber.git', branch: BRANCH_NAME)
+        git(url: 'https://github.com/microweber/microweber.git', branch: $GIT_BRANCH)
       }
     }
 
