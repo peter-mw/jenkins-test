@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent { docker { image 'allebb/phptestrunner-74:latest' } }
   stages {
     stage('Checkout') {
       steps {
