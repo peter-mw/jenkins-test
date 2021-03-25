@@ -22,8 +22,7 @@ pipeline {
           steps {
             echo 'Running PHP 7.4 tests...'
             sh 'php -v'
-
-            echo 'Installing project composer dependencies...'        echo 'Installing Composer'
+            echo 'Installing Composer'
             sh 'curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer'
             echo 'Installing project composer dependencies...'
             sh 'cd $WORKSPACE && composer install --no-progress'
