@@ -20,6 +20,8 @@ pipeline {
 
           }
           steps {
+            sh 'pwd'
+            sh 'ls -la'
             echo 'Running PHP 7.4 tests...'
             sh 'php -v'
             echo 'Installing Composer'
