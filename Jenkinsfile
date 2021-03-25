@@ -22,10 +22,12 @@ pipeline {
           steps {
             echo 'Running PHP 7.4 tests...'
             sh 'php -v'
-            echo 'Installing Composer'
+
+            echo 'Installing project composer dependencies...'        echo 'Installing Composer'
             sh 'curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer'
             echo 'Installing project composer dependencies...'
             sh 'cd $WORKSPACE && composer install --no-progress'
+            sh 'curl -sSfL -o $WORKSPACE/vendor/bin/phpunit https://phar.phpunit.de/phpunit-5.7.phar'
             sh 'php -v'
             sh 'composer --version'
             echo 'Running PHPUnit tests...'
