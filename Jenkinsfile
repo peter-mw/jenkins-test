@@ -4,7 +4,7 @@ node {
     }
     stage("build") {
         writeFile file: "test.txt", text: "test"
-             docker.image("allebb/phptestrunner-74:latest").inside("-v /home/jenkins/:/home/jenkins/") { c ->
+             docker.image("allebb/phptestrunner-74:latest").inside("") { c ->
                 sh 'pwd'
                 sh 'ls -la'
                 sh 'printenv' // jenkins is passing all envs variables into container
