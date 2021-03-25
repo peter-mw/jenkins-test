@@ -17,17 +17,11 @@ node {
             sh 'php -v'
             sh 'php composer.phar --version'
 
+            sh 'chmod -R 777 $WORKSPACE/storage'
+            echo 'Running PHPUnit tests...'
+            sh 'php $WORKSPACE/vendor/bin/phpunit --coverage-html $WORKSPACE/report/clover --coverage-clover $WORKSPACE/report/clover.xml --log-junit $WORKSPACE/report/junit.xml'
+            sh 'chmod -R a+w $PWD && chmod -R a+w $WORKSPACE'
+            junit 'report/*.xml'
 
-
-             docker.image("allebb/phptestrunner-74:latest").inside("-v /home/jenkins/:/home/jenkins/") { c ->
-
-                sh 'chmod -R 777 $WORKSPACE/storage'
-                echo 'Running PHPUnit tests...'
-                sh 'php $WORKSPACE/vendor/bin/phpunit --coverage-html $WORKSPACE/report/clover --coverage-clover $WORKSPACE/report/clover.xml --log-junit $WORKSPACE/report/junit.xml'
-                sh 'chmod -R a+w $PWD && chmod -R a+w $WORKSPACE'
-                junit 'report/*.xml'
-
-        }
-        sh 'cat test.txt' // will be "modified-inside-container" here
     }
 }
