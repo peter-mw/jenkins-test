@@ -1,4 +1,9 @@
 node {
+  agent { docker {
+                           image 'allebb/phptestrunner-74:latest'
+                           args '-u root:sudo'
+                         }
+                     }
     stage('checkout') {
         git url: 'https://github.com/peter-mw/jenkins-test.git'
     }
