@@ -7893,7 +7893,20 @@ body.bup.dragStart.state-element .edit .element:empty {
 /* Elements for Layouts */
 
 /*skin-3*/
-.background-image-holder.bg-image {
+.background-image-holder.parallax {
+    position: relative;
+    height: 600px;
+    max-height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+}
+
+[data-parallax] .background-image-holder.parallax {
+    background-attachment: fixed;
+}
+
+.background-image.bg-image {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     top: 0;
