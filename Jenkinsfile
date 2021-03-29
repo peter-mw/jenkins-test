@@ -11,7 +11,7 @@ pipeline {
                 steps {
                     sh "docker rmi test/test1"
                     sh "docker build -t test/test1 --no-cache ."
-                    docker tag test:test1 test:latest
+                    docker tag test test:latest
 
                 }
             }
