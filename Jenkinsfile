@@ -7,16 +7,25 @@ pipeline {
       }
     }
 
+      stage("Docker build") {
+                steps {
+                    sh "docker rmi test/test1"
+                    sh "docker build -t test/test1 --no-cache ."
+                    docker tag test:${BUILD_NUMBER} test:latest
+
+                }
+            }
+
+
+
     stage('Test') {
       parallel {
-
-
         stage('PHP 7.4') {
-  agent { docker {
-                           image 'allebb/phptestrunner-74:latest'
-                           args '-u root:sudo'
-                         }
-                     }
+          agent { docker {
+              image 'test/test1'
+              args '-u root:sudo'
+          }
+        }
           steps {
             sh 'pwd'
             sh 'ls -la'
@@ -35,16 +44,14 @@ pipeline {
             sh 'chmod -R a+w $PWD && chmod -R a+w $WORKSPACE'
             junit 'report/*.xml'
           }
-        }
-
       }
     }
+  }
 
     stage('Release') {
       steps {
         echo 'Ready.'
       }
     }
-
-  }
+}
 }
